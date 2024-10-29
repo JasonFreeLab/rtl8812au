@@ -1,5 +1,10 @@
+# VS Code Settings
+.vscode/
+
+#bulid
 *.o
 *.cmd
+*.mod
 *.ko
 *.cm
 Module.symvers
