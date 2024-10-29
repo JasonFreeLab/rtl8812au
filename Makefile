@@ -174,6 +174,7 @@ CONFIG_PLATFORM_NV_TK1 = n
 CONFIG_PLATFORM_RTL8197D = n
 CONFIG_PLATFORM_ARM_ODROIDC2 = n
 CONFIG_PLATFORM_PPC = n
+CONFIG_PLATFORM_ARM_RK1106 = n
 ###############################################################
 
 CONFIG_DRVEXT_MODULE = n
@@ -1529,6 +1530,23 @@ KVER ?= $(shell uname -r)
 KSRC := /lib/modules/$(KVER)/build
 MODDESTDIR := /lib/modules/$(KVER)/kernel/drivers/net/wireless/
 INSTALL_PREFIX :=
+endif
+
+ifeq ($(CONFIG_PLATFORM_ARM_RK1106), y)
+EXTRA_CFLAGS += -DCONFIG_LITTLE_ENDIAN -DANDROID_PLATFORM -DCONFIG_PLATFORM_ROCKCHIP #-DCONFIG_MINIMAL_MEMORY_USAGE
+
+# default setting for Android 4.1, 4.2, 4.3, 4.4
+EXTRA_CFLAGS += -DCONFIG_IOCTL_CFG80211 -DRTW_USE_CFG80211_STA_EVENT
+EXTRA_CFLAGS += -DCONFIG_CONCURRENT_MODE
+
+# default setting for Power control
+# EXTRA_CFLAGS += -DRTW_ENABLE_WIFI_CONTROL_FUNC
+
+# default setting for Special function
+ARCH ?= arm
+CROSS_COMPILE ?= arm-rockchip830-linux-uclibcgnueabihf-
+KSRC ?= $(LUCKFOX_SDK_PATH)/sysdrv/source/kernel
+MODULE_NAME := 8812cu
 endif
 
 USER_MODULE_NAME ?=
