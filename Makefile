@@ -219,15 +219,15 @@ endif
 
 ifeq ($(CONFIG_RTL8812A)_$(CONFIG_RTL8821A), y_y)
 
-EXTRA_CFLAGS += -DDRV_NAME=\"rtl88xxau_wfb\"
+EXTRA_CFLAGS += -DDRV_NAME=\"rtl88xxau\"
 ifeq ($(CONFIG_USB_HCI), y)
-USER_MODULE_NAME = 88XXau
+USER_MODULE_NAME = 88xxau
 endif
 ifeq ($(CONFIG_PCI_HCI), y)
-USER_MODULE_NAME = 88XXae
+USER_MODULE_NAME = 88xxae
 endif
 ifeq ($(CONFIG_SDIO_HCI), y)
-USER_MODULE_NAME = 88XXas
+USER_MODULE_NAME = 88xxas
 endif
 
 else
@@ -1546,12 +1546,12 @@ EXTRA_CFLAGS += -DCONFIG_CONCURRENT_MODE
 ARCH ?= arm
 CROSS_COMPILE ?= arm-rockchip830-linux-uclibcgnueabihf-
 KSRC ?= $(LUCKFOX_SDK_PATH)/sysdrv/source/kernel
-MODULE_NAME := 8812cu
+MODULE_NAME := 8812au
 endif
 
 USER_MODULE_NAME ?=
 ifneq ($(USER_MODULE_NAME),)
-MODULE_NAME := $(USER_MODULE_NAME)_wfb
+MODULE_NAME := $(USER_MODULE_NAME)
 endif
 
 ifneq ($(KERNELRELEASE),)
